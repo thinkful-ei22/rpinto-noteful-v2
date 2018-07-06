@@ -37,3 +37,33 @@ INSERT INTO folders (folderName)
     ('Drafts'),
     ('Personal'),
     ('Work');
+
+-- Tags table and reationships
+
+DROP TABLE IF EXISTS tags;
+
+CREATE TABLE tags (
+  id serial PRIMARY KEY,
+  tagname text NOT NULL
+);
+
+INSERT INTO tags (tagname)
+  VALUES
+    ('Dope'),
+    ('Not Dope'),
+    ('Dopest'),
+    ('Hella Dope');
+
+DROP TABLE IF EXISTS notes_tags;
+
+CREATE TABLE notes_tags (
+  note_id INTEGER NOT NULL REFERENCES notes ON DELETE CASCADE,
+  tag_id INTEGER NOT NULL REFERENCES tags ON DELETE CASCADE
+);
+
+INSERT INTO notes_tags (note_id, tag_id) 
+  VALUES 
+  (1,1),
+  (2,2),
+  (3,3),
+  (4,4);

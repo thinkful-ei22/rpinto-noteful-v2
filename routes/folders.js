@@ -37,7 +37,6 @@ router.get('/:id', (req, res, next) => {
 router.put('/:id', (req, res, next) => {
   const id = req.params.id;
 
-  /***** Never trust users - validate input *****/
   const updateObj = {};
   const updateableFields = ['name'];
 
@@ -58,7 +57,7 @@ router.put('/:id', (req, res, next) => {
     .select('folders.id', 'name')
     .from('folders')
     .where({
-      id: id,
+      id: id
     })
     .update(updateObj)
     .returning(['folders.id','name'])
@@ -103,7 +102,7 @@ router.delete('/:id', (req, res, next) => {
     .select('folders.id', 'name')
     .from('folders')
     .where({
-      id: id,
+      id: id
     })
     .delete()
     .then(results => {
